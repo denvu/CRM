@@ -155,12 +155,20 @@ function renderGoods(arr) {
   };
     openModalWindow();
    
-   tableBody.addEventListener("click", e => {
+    function deletGoods() {   
+      tableBody.addEventListener("click", e => {
     const target = e.target;
     if (target.classList.contains("table__btn_del")) {
       target.closest("tr").remove();
-    }
+
+      const id = parseInt(target.closest("tr").querySelector(".table__cell-id").textContent.split(": ")[1]);
+      const index = goods.findIndex(item => item.id === id);
+          goods.splice(index, 1);
+    };
+    console.log(goods);
   });
+}
+  deletGoods();
 }
 
 renderGoods(goods);
