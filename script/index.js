@@ -93,11 +93,7 @@ function renderGoods(arr) {
       "table__cell_name"
     );
     newElemenId.setAttribute("data-id", obj.id);
-    const spanNewElemenId = document.createElement("span");
-    spanNewElemenId.classList.add("table__cell-id");
-    spanNewElemenId.textContent = `ID: ${obj.id}`;
-    newElemenId.textContent += `${obj.title}`;
-    newElemenId.appendChild(spanNewElemenId);
+    newElemenId.insertAdjacentHTML ('afterbegin', `<span class="table__cell-id">ID: ${obj.id}</span>` + `${obj.title}`);
     newElement.appendChild(newElemenId);
 
     const newElementCategory = document.createElement("td");
