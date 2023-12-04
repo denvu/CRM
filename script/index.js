@@ -4,6 +4,7 @@ const modalTitle = document.querySelector(".modal__title");
 const modalForm = document.querySelector(".modal__form");
 const modalCheckbox = document.querySelector(".modal__checkbox");
 const modalInputDiscount = document.querySelector(".modal__input_discount");
+const form = document.querySelector('.overlay__modal');
 
 document.querySelector(".overlay").classList.remove("active");
 
@@ -136,6 +137,29 @@ function renderGoods(arr) {
 
     return newElement;
   }
+
+  function openModalWindow() {
+    const btnAddGoods = document.querySelector('.panel__add-goods');
+    const formOverlay = document.querySelector(".overlay");
+
+    btnAddGoods.addEventListener('click', () => {
+      formOverlay.classList.add('active');
+    });
+
+    form.addEventListener('click', event => {
+      event.stopPropagation();
+    });
+
+    formOverlay.addEventListener('click', () => {
+      formOverlay.classList.remove('active');
+    });
+    
+    const btnClose = document.querySelector('.modal__close');
+    btnClose.addEventListener('click', () => {
+      formOverlay.classList.remove('active');
+    });    
+  };
+   openModalWindow();
 }
 
 renderGoods(goods);
