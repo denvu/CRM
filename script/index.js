@@ -146,20 +146,21 @@ function renderGoods(arr) {
       formOverlay.classList.add('active');
     });
 
-    form.addEventListener('click', event => {
-      event.stopPropagation();
-    });
-
-    formOverlay.addEventListener('click', () => {
-      formOverlay.classList.remove('active');
-    });
-    
-    const btnClose = document.querySelector('.modal__close');
-    btnClose.addEventListener('click', () => {
-      formOverlay.classList.remove('active');
-    });    
+    formOverlay.addEventListener('click', e => {
+      const target = e.target;
+      if (target === formOverlay || target.closest('.modal__close')) {
+        formOverlay.classList.remove('active');
+      }
+    });   
   };
-   openModalWindow();
+    openModalWindow();
+   
+   tableBody.addEventListener("click", e => {
+    const target = e.target;
+    if (target.classList.contains("table__btn_del")) {
+      target.closest("tr").remove();
+    }
+  });
 }
 
 renderGoods(goods);
